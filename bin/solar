@@ -1,6 +1,6 @@
 #!/usr/bin/env ruby
+require "bundler/setup"
 
-require './lib/solar_verde.rb'
 require './lib/solar_verde/cli.rb'
 
 SolarVerde::CLI.new.call
