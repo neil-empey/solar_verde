@@ -1,4 +1,5 @@
 class SolarVerde::CLI
+  attr_accessor :option, :pos
 
   def call
     puts ""
@@ -6,8 +7,11 @@ class SolarVerde::CLI
     puts "-------------------------------------"
     puts "Welcome to the solar output estimator"
     puts "-------------------------------------"
-    get_location
-    choices
+
+    option = choices()
+    pos = get_location()
+    SolarVerde::Solar.new(option, pos)
+
   end
 
   def get_location
