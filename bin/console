@@ -12,3 +12,6 @@ require "solar_verde"
 
 require "irb"
 IRB.start(__FILE__)
+
+require 'pry'
+Pry.start

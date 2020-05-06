@@ -1,5 +1,24 @@
+require_relative './class_gather.rb'
+require 'pry'
+
 class SolarVerde::CLI
-  attr_accessor :option, :pos
+  attr_accessor :option_array, :pos_zip_string
+
+
+
+  def initialize
+    @option_array = []
+    @pos_zip_string = ""
+    call
+  end
+
+  def option_array
+    @option_array
+  end
+
+  def pos_zip_string
+    @pos_zip_string
+  end
 
   def call
     puts ""
@@ -7,11 +26,8 @@ class SolarVerde::CLI
     puts "-------------------------------------"
     puts "Welcome to the solar output estimator"
     puts "-------------------------------------"
-
-    option = choices()
-    pos = get_location()
-    SolarVerde::Solar.new(option, pos)
-
+    get_location
+    choices
   end
 
   def get_location
@@ -21,9 +37,11 @@ class SolarVerde::CLI
 
     input = gets.strip
     p input
+    @pos_zip_string = input
   end
 
   def choices
+
     puts "Select an option below by entering its corresponding number"
     puts "--------------------------------------"
     puts ""
@@ -42,21 +60,28 @@ class SolarVerde::CLI
       when "2"
         puts "Enter a month, (i.e January, user would enter 1)"
         puts ""
+        month = gets.strip
+        puts ""
         puts "procesing your request, one moment please."
-        return 2
+        @option_array << 2
+        @option_array << month
+        SolarVerde::Gather.gather(@option_array, @pos_zip_string)
       when "1"
         puts ""
         puts "processing your request, one moment please."
         puts ""
-        return 1
+        @option_array << 1
+        SolarVerde::Gather.gather(@option_array, @pos_zip_string)
       when "3"
         puts "Come back soon."
-        return 3
+        return
       end
     end
   end
 
-
+  # def add_data(locate, zip)
+  #   @data_to_analyze = SolarVerde::Gather.gather(locate, zip)
+  # end
 
 
 end

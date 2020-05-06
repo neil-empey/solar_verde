@@ -2,6 +2,5 @@
 require "bundler/setup"
 
 require './lib/solar_verde/cli.rb'
-require './lib/solar_verde/class_solar.rb'
-
-SolarVerde::CLI.new.call
+require './lib/solar_verde/class_gather.rb'
+SolarVerde::CLI.new.initialize
