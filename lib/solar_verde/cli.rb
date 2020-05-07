@@ -30,7 +30,6 @@ class SolarVerde::CLI
     puts "----------------------------------------------"
 
     input = gets.strip
-    p input
     @pos_address_string = input
   end
 
@@ -64,6 +63,24 @@ class SolarVerde::CLI
         puts "processing your request, one moment please."
         puts ""
         process1 = SolarVerde::Gather.new(@pos_address_string)
+        check = process1.confirm_address[0]
+        check.address
+         puts "Confirm the address is correct :  #{check.address}"
+        puts "------------------------------------------------"
+        puts " Y / N "
+        puts ""
+        confirmation = gets.strip.downcase
+          case confirmation
+          when "y"
+            SolarVerde::AdvancedGather.new(process[1])
+          when "n"
+            puts "Let's try again. Please enter your address."
+            puts "-------------------------------------------"
+            puts ""
+            input = gets.strip
+            @pos_address_string = input
+            SolarVerde::Gather.new(@pos_address_string)
+          end
       when "3"
         puts "Come back soon."
         return
