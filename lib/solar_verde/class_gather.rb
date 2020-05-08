@@ -18,12 +18,6 @@ class SolarVerde::Gather
     zip_to_latlong(address_string)
   end
 
-  # def self.gather(address_string)
-  #   @address_string = address_string
-  #   p self.new.zip_to_latlong(address_string)
-  #   @@address << self
-  # end
-
   def zip_to_latlong(address)
     geocoder = OpenCage::Geocoder.new(api_key: '464d424f001944f28f7633d199bada6b')
     results = geocoder.geocode(address)
@@ -42,7 +36,7 @@ class SolarVerde::Gather
     geocoder = OpenCage::Geocoder.new(api_key: '464d424f001944f28f7633d199bada6b')
     confirm = geocoder.reverse_geocode(@lat, @long)
     confirm_array << confirm
-    confirm_array << address_lat_long
+    confirm_array << [@lat, @long]
     confirm_array
   end
 
