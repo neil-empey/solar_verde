@@ -5,7 +5,7 @@ require 'pry'
 class SolarVerde::CLI
   include ::ConfirmAddress
 
-  attr_accessor :pos_address_string, :prediction, :location, :choice_code
+  attr_accessor :pos_address_string, :prediction, :location, :choice_code, :system_capacity, :azimuth, :tilt, :array_type, :module_type, :losses
 
   def initialize
     @pos_address_string = ""
@@ -81,7 +81,16 @@ class SolarVerde::CLI
      puts "                   ---------------"
      p outputs
    elsif choice_code == "2"
+     puts ""
+     puts "     Please answer the following questions to the best of your ability."
+     puts "     -------------------------------------------------------------------"
+     puts "     The units will be described in the question. Type 'h' for help. "
+     puts "     :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::"
+     puts ""
+     puts ""
+     
 
+     exit(0)
      AdvancedGather.complex(location, system_capacity, azimuth, tilt, array_type, module_type, losses)
    end
    exit(true)
