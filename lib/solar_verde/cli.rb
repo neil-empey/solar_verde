@@ -84,15 +84,79 @@ class SolarVerde::CLI
      puts ""
      puts "     Please answer the following questions to the best of your ability."
      puts "     -------------------------------------------------------------------"
-     puts "     The units will be described in the question. Type 'h' for help. "
-     puts "     :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::"
+     puts "     The units will be described in the question. Numbers Only, 'h' for help. "
+     puts "     ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::"
      puts ""
      puts ""
-     
+     system_capacity = capacity()
+     azimuth = direction()
+     tilt = til()
+     array_type = type_arr()
+     module_type = type_mod()
+     losses = loss()
 
-     exit(0)
-     AdvancedGather.complex(location, system_capacity, azimuth, tilt, array_type, module_type, losses)
+        AdvancedGather.complex(location, system_capacity, azimuth, tilt, array_type, module_type, losses)
    end
-   exit(true)
-  end
+ end
+
+   def capacity
+     puts "Please enter your system capacity in kW"
+     puts ""
+     s_capacity = gets.strip.downcase
+     if s_capacity == 'h'
+       help()
+     end
+     puts ""
+     s_capacity
+   end
+
+   def direction
+     puts "Please enter the direction your array points towards"
+     puts ""
+     points_to = gets.strip.downcase
+     if points_to == 'h'
+       help()
+     end
+     points_to
+   end
+
+   def til
+     puts "Please enter the angle from the horizontal the array is positioned at "
+     puts ""
+     s_tilt = gets.strip.downcase
+     if s_tilt == 'h'
+       help()
+     end
+     s_tilt
+   end
+
+   def type_arr
+     puts "Please enter your array-type, see help for more info"
+     puts ""
+     arr = gets.strip.downcase
+     if arr == 'h'
+       help()
+     end
+     arr
+   end
+
+   def type_mod
+     puts "Please enter your module type. (0)Standard, (1)Premium or (2)Thin Film"
+     puts ""
+     m_type = gets.strip.downcase
+     if m_type == 'h'
+       help()
+     end
+     m_type
+   end
+
+   def loss
+     puts "Please enter your system losses"
+     puts ""
+     los = gets.strip.downcase
+     if los == 'h'
+       help()
+     end
+     los
+   end
 end
