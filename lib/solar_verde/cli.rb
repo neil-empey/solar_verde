@@ -5,7 +5,7 @@ require 'pry'
 class SolarVerde::CLI
   include ::ConfirmAddress
 
-  attr_accessor :pos_address_string
+  attr_accessor :pos_address_string, :prediction, :location, :choice_code
 
   def initialize
     @pos_address_string = ""
@@ -72,6 +72,18 @@ class SolarVerde::CLI
     end
 
   def advanced_prediction(location, choice_code)
-    prediction = AdvancedGather.new(location, choice_code)
+    if choice_code == "1"
+     outputs = AdvancedGather.simple(location)
+     puts ""
+     puts "    Here is the predicted annual kWhac (kiloWattHours AC) for your system"
+     puts ""
+     puts "                #{outputs} kWhac"
+     puts "                   ---------------"
+     p outputs
+   elsif choice_code == "2"
+
+     AdvancedGather.complex(location, system_capacity, azimuth, tilt, array_type, module_type, losses)
+   end
+   exit(true)
   end
 end
