@@ -19,11 +19,17 @@ class SolarVerde::CLI
   def call
     puts ""
     puts ""
-    puts "       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^"
-    puts "       -------------------------------------"
-    puts "       Welcome To The Solar Output Estimator"
-    puts "       -------------------------------------"
-    puts "       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^"
+                                                                          puts "                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^"
+    puts "                     -------------------------------------"
+    puts "                     Welcome To The Solar Output Estimator"
+    puts "                     -------------------------------------"
+
+  puts "                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^"
+    puts ""
+    puts ""
+    puts "                 An annual solar output estimate in kiloWattHours"
+    puts "                           A/C for the continental U.S"
+    puts ""
     puts ""
     get_location
     choices
@@ -31,8 +37,10 @@ class SolarVerde::CLI
 
   def get_location
     puts ""
-    puts "     Please enter your address, street, city, state"
-    puts "     ----------------------------------------------"
+    puts "                  Please enter your address, street, city, state"
+    puts "                  ----------------------------------------------"
+    puts ""
+    puts ""
     puts ""
     puts ""
 
@@ -42,16 +50,16 @@ class SolarVerde::CLI
 
   def choices
     puts ""
-    puts "    -----------------------------------------------------------"
-    puts "    Select an option below by entering the corresponding number"
-    puts "    -----------------------------------------------------------"
+    puts "               -----------------------------------------------------------"
+    puts "               Select an option below by entering the corresponding number"
+    puts "               -----------------------------------------------------------"
     puts ""
-    puts "  1. Simple yearly predicted output precentage"
     puts ""
-    puts "  2. Advanced prediction, requires short guided questionnaire"
-    puts "     monthly and yearly predictions available in this mode"
+    puts "              1. Simple yearly predicted output precentage based on a 4kW system"
     puts ""
-    puts "  3. Exit"
+    puts "              2. Advanced prediction, requires short guided questionnaire"
+    puts ""
+    puts "              3. Exit"
     puts ""
 
     response = nil
@@ -59,13 +67,20 @@ class SolarVerde::CLI
       if response == "2" || response == "1"
         self.establish_confirm(response)
       elsif response == "3"
-        puts "  Come back soon."
-        puts "    tell your friends..... ;)"
+        puts ""
+        puts ""
+        puts "                     send feedback to : argus.two.2@gmail.com"
+        puts ""
+        puts ""
+        puts ""
+        puts ""
         exit(true)
       else
         puts ""
-        puts "---------------------------------"
-        puts " Invalid choice, please try again."
+        puts "                      ---------------------------------"
+        puts "                      Invalid choice, please try again."
+        puts "                      ---------------------------------"
+        puts ""
         get_location()
         choices()
       end
@@ -75,17 +90,39 @@ class SolarVerde::CLI
     if choice_code == "1"
      outputs = AdvancedGather.simple(location)
      puts ""
-     puts "    Here is the predicted annual kWhac (kiloWattHours AC) for your system"
+     puts "            Here is the predicted annual kWhac (kiloWattHours AC) for your system"
      puts ""
-     puts "                #{outputs} kWhac"
-     puts "                   ---------------"
-     p outputs
+     puts "                              #{outputs} kWhac"
+     puts "                                 ---------------"
+     puts ""
+     puts ""
+     puts "                                  ..........."
+     puts "                                  .  .   .  ."
+     puts "                                  .    .    ."
+     puts "                                  .  .....  ."
+     puts "                                  ..........."
+     puts ""
+     puts "                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^"
+     puts ""
+     puts ""
+     puts "                          send feedback to : argus.two.2@gmail.com"
+     puts ""
+     puts ""
+     puts ""
+     puts ""
+     puts ""
+     puts ""
+     puts ""
+     puts ""
+     puts ""
+     exit(true)
    elsif choice_code == "2"
      puts ""
-     puts "     Please answer the following questions to the best of your ability."
-     puts "     -------------------------------------------------------------------"
-     puts "     The units will be described in the question. Numbers Only, 'h' for help. "
-     puts "     ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::"
+     puts "            Please answer the following questions to the best of your ability."
+     puts "            ------------------------------------------------------------------"
+     puts ""
+     puts "          The units will be described in the question. Numbers Only, 'h' for help. "
+     puts "                   ::::::::::::::::::::::::::::::::::::::::::::::::::"
      puts ""
      puts ""
      system_capacity = capacity()
@@ -95,12 +132,28 @@ class SolarVerde::CLI
      module_type = type_mod()
      losses = loss()
 
-        AdvancedGather.complex(location, system_capacity, azimuth, tilt, array_type, module_type, losses)
+     outputs = AdvancedGather.complex(location, system_capacity, azimuth, tilt, array_type, module_type, losses)
+     # outputs
+
+     puts ""
+     puts "                      Here is the predicted annual kWhac (kiloWattHours AC) for your system"
+     puts ""
+     puts "                                 #{outputs} kWhac"
+     puts "                                   ---------------"
+     puts ""
+     puts ""
+     puts "                     send feedback to : argus.two.2@gmail.com"
+     puts ""
+     puts ""
+     puts ""
+     puts ""
+     exit(true)
    end
  end
 
    def capacity
-     puts "Please enter your system capacity in kW"
+     puts "            Please enter your system capacity in kW"
+     puts ""
      puts ""
      s_capacity = gets.strip.downcase
      if s_capacity == 'h'
@@ -111,7 +164,8 @@ class SolarVerde::CLI
    end
 
    def direction
-     puts "Please enter the direction your array points towards"
+     puts "            Please enter the direction your array points towards"
+     puts ""
      puts ""
      points_to = gets.strip.downcase
      if points_to == 'h'
@@ -121,7 +175,9 @@ class SolarVerde::CLI
    end
 
    def til
-     puts "Please enter the angle from the horizontal the array is positioned at "
+     puts ""
+     puts "            Please enter the angle from the horizontal the array is positioned "
+     puts ""
      puts ""
      s_tilt = gets.strip.downcase
      if s_tilt == 'h'
@@ -131,7 +187,9 @@ class SolarVerde::CLI
    end
 
    def type_arr
-     puts "Please enter your array-type, see help for more info"
+     puts ""
+     puts "            Please enter your array-type, see help for more info"
+     puts ""
      puts ""
      arr = gets.strip.downcase
      if arr == 'h'
@@ -141,7 +199,9 @@ class SolarVerde::CLI
    end
 
    def type_mod
-     puts "Please enter your module type. (0)Standard, (1)Premium or (2)Thin Film"
+     puts ""
+     puts "            Please enter your module type. (0)Standard, (1)Premium or (2)Thin Film"
+     puts ""
      puts ""
      m_type = gets.strip.downcase
      if m_type == 'h'
@@ -151,12 +211,25 @@ class SolarVerde::CLI
    end
 
    def loss
-     puts "Please enter your system losses"
+     puts ""
+     puts "            Please enter your system losses"
+     puts ""
      puts ""
      los = gets.strip.downcase
      if los == 'h'
        help()
      end
+     puts "                 One moment please while we process your request"
+     puts "                                  ..........."
+     puts "                                  .  .   .  ."
+     puts "                                  .    .    ."
+     puts "                                  .  .....  ."
+     puts "                                  ..........."
+     puts ""
+     puts "                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^"
+     puts ""
+     puts ""
+     puts ""
      los
    end
 end

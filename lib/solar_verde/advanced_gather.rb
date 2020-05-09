@@ -29,7 +29,7 @@ class AdvancedGather
     @locate = locate
     result = grab(locate, system_capacity, azimuth, tilt, array_type, module_type, losses)
     @@all << result
-    return result
+    return result["outputs"]["ac_annual"]
   end
 end
   #DEFAULTED VALUES IN PREDICTION MODEL

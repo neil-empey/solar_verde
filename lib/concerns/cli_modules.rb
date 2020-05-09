@@ -1,16 +1,22 @@
 module ConfirmAddress
   def establish_confirm(choice)
     puts ""
-    puts "   processing your request, one moment please..."
+    puts "                   processing your request, one moment please..."
+    puts "                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^"
+    puts ""
+    puts ""
     puts ""
     process1 = SolarVerde::Gather.new(@pos_address_string)
     check = process1.confirm_address[0]
     check2 = process1.confirm_address[1]
     check.address
-    puts "   Confirm the address is correct :  #{check.address}"
-    puts "   --------------------------------""  "":::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::"
+    puts "                Confirm the address is correct : --->  #{check.address}"
+    puts "                --------------------------------"
     puts ""
-    puts "       Please enter (Y) or (N)"
+    puts "                        Please enter (Y) or (N)"
+    puts ""
+    puts ""
+    puts ""
     puts ""
       confirmation = gets.strip.downcase
       case confirmation
@@ -19,9 +25,9 @@ module ConfirmAddress
         advanced_prediction(check2, choice)
       when "n"
         puts ""
-        puts "     ---------------------"
-        puts "     Let's try this again."
-        puts "     ---------------------"
+        puts "                               ---------------------"
+        puts "                               Let's try this again."
+        puts "                               ---------------------"
         puts ""
         get_location()
         choices()
