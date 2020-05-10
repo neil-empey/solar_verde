@@ -27,7 +27,7 @@ class AdvancedGather
 
   def self.complex(locate, system_capacity, azimuth, tilt, array_type, module_type, losses)
     @locate = locate
-    result = grab(locate, system_capacity, azimuth, tilt, array_type, module_type, losses)
+    result = grab(locate, system_capacity=4, azimuth=180, tilt=30.26, array_type=1, module_type=0, losses=14)
     @@all << result
     return result["outputs"]["ac_annual"]
   end
